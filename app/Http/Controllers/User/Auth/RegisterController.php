@@ -6,7 +6,6 @@ use App\Actions\User\Auth\UserRegisterAction;
 use App\Exceptions\User\Auth\UserRegisterException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Auth\UserRegisterRequest;
-use Throwable;
 
 class RegisterController extends Controller
 {
@@ -22,6 +21,7 @@ class RegisterController extends Controller
     {
         try {
             $action->handle($request->validated());
+
             return redirect()
                 ->route('home')
                 ->with('success', 'Аккаунт удачно создан!');
@@ -31,7 +31,7 @@ class RegisterController extends Controller
             return redirect()
                 ->back()
                 ->withErrors([
-                    'error' => $e->getMessage()
+                    'error' => $e->getMessage(),
                 ])
                 ->withInput();
 

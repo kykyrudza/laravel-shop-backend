@@ -18,4 +18,12 @@ class UserRepository
             ->where('email', $email)
             ->exists();
     }
+
+    public function find(string $email): User
+    {
+        return User::query()
+            ->where([
+                'email' => $email
+            ])->first();
+    }
 }

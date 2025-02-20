@@ -2,11 +2,11 @@
 
 namespace App\Notifications\User\Auth;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use App\Models\User;
+use Illuminate\Notifications\Notification;
 
 class SuccessRegistrationNotification extends Notification implements ShouldQueue
 {
@@ -34,4 +34,3 @@ class SuccessRegistrationNotification extends Notification implements ShouldQueu
             ->line('Спасибо, что выбрали нас!');
     }
 }
-

@@ -3,9 +3,9 @@
 namespace App\Events\User\Auth;
 
 use App\Models\User;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserRegistered implements ShouldQueue
 {
@@ -18,4 +18,3 @@ class UserRegistered implements ShouldQueue
         $this->user = $user;
     }
 }
-

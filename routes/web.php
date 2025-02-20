@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\ForgotPasswordController;
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\RegisterController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
 use App\Http\Controllers\User\Auth\VerificationController;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
 
@@ -18,7 +18,8 @@ Route::middleware('guest')->group(function () {
 
     Route::get('login', [LoginController::class, 'index'])
         ->name('login');
-    Route::post('login', [LoginController::class, 'store']);
+    Route::post('login', [LoginController::class, 'store'])
+        ->name('login.store');
 
     Route::get('password/reset', [ForgotPasswordController::class, 'index'])
         ->name('password.request');

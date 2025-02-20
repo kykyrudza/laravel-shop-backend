@@ -25,4 +25,3 @@ class SendUserRegisteredNotificationJob implements ShouldQueue
         $this->user->notify(new SuccessRegistrationNotification($this->user));
     }
 }
-
