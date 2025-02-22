@@ -21,9 +21,9 @@ class ResetPasswordController extends Controller
 
             return redirect()
                 ->route('login')
-                ->with('success', 'Password change success');
+                ->with('success', __('success.auth.reset-password.success'));
 
-        }catch (UserResetPasswordFormException $e){
+        } catch (UserResetPasswordFormException $e) {
             return redirect()
                 ->back()
                 ->withErrors([

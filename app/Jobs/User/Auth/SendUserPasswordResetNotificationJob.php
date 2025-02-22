@@ -3,7 +3,6 @@
 namespace App\Jobs\User\Auth;
 
 use App\Models\User;
-use App\Notifications\User\Auth\SuccessLoggingNotification;
 use App\Notifications\User\Auth\SendResetPasswordNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -15,6 +14,7 @@ class SendUserPasswordResetNotificationJob implements ShouldQueue
     use Dispatchable, Queueable, SerializesModels;
 
     public readonly User $user;
+
     public readonly string $token;
 
     public function __construct(User $user, string $token)

@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Actions\App\LocaleAction;
-use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         return view('home');
     }
 
-    public function changeLocale(LocaleAction $action, $locale)
+    public function locale(LocaleAction $action, $locale)
     {
-       return $action->handle($locale);
+        return $action->handle($locale);
     }
 }

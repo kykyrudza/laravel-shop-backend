@@ -21,10 +21,10 @@ class ForgotPasswordController extends Controller
 
             return redirect()
                 ->back()
-                ->with('success', 'Mail send to you Email!')
+                ->with('success', __('success.auth.forgot-password.success'))
                 ->withInput();
 
-        }catch (UserForgotPasswordEmailFormException $e){
+        } catch (UserForgotPasswordEmailFormException $e) {
 
             return redirect()
                 ->back()

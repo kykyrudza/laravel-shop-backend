@@ -11,9 +11,13 @@ class LocaleAction
         if (in_array($locale, config('locales.available_locales'))) {
             session(['locale' => $locale]);
             app()->setLocale($locale);
-            return redirect()->route('home');
+
+            return redirect()
+                ->route('home');
         }
 
-        return redirect()->route('home')->with('error', 'locale not found');
+        return redirect()
+            ->route('home')
+            ->with('error', 'locale not found');
     }
 }

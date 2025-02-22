@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\User\Auth;
+namespace Tests\Feature\User\Auth;
 
 use App\Actions\User\Auth\UserRegisterAction;
 use App\Exceptions\User\Auth\UserRegisterException;
@@ -10,12 +10,12 @@ use Illuminate\Foundation\Testing\WithFaker;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class RegisterControllerTest extends TestCase
+class RegisterTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
     #[Test]
-    public function test_store_success()
+    public function test_user_can_register()
     {
         $userData = [
             'name' => 'Test User',
@@ -31,7 +31,7 @@ class RegisterControllerTest extends TestCase
 
         $response->assertStatus(302);
 
-        if (!User::where('email', $userData['email'])->exists()) {
+        if (! User::where('email', $userData['email'])->exists()) {
             dd('Пользователь не создан в базе');
         }
 
@@ -41,7 +41,7 @@ class RegisterControllerTest extends TestCase
     }
 
     #[Test]
-    public function test_store_validation_errors()
+    public function test_user_register_has_validation_errors()
     {
         $data = [
             'name' => '',
@@ -63,7 +63,7 @@ class RegisterControllerTest extends TestCase
     }
 
     #[Test]
-    public function test_store_failure()
+    public function test_user_can_not_register()
     {
         $this->partialMock(UserRegisterAction::class, function ($mock) {
             $mock->shouldReceive('handle')->once()->andThrow(new UserRegisterException('Ошибка при регистрации.'));
@@ -84,7 +84,7 @@ class RegisterControllerTest extends TestCase
     }
 
     #[Test]
-    public function test_store_email_already_exists()
+    public function test_user_register_error_email_exist()
     {
         User::factory()->create([
             'email' => 'existing@example.com',

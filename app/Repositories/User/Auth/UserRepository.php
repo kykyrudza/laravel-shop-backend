@@ -23,7 +23,7 @@ class UserRepository
     {
         return User::query()
             ->where([
-                'email' => $email
+                'email' => $email,
             ])->first() ?? false;
     }
 }

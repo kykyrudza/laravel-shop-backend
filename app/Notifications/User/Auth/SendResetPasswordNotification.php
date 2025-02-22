@@ -35,7 +35,7 @@ class SendResetPasswordNotification extends Notification implements ShouldQueue
             ->line('Вы получили это письмо, потому что мы получили запрос на сброс пароля для вашего аккаунта.')
             ->action('Сбросить пароль', url(route('password.reset', [
                 'token' => $this->token,
-                'email' => $notifiable->email
+                'email' => $notifiable->email,
             ], false)))
             ->line('Если вы не запрашивали сброс пароля, просто проигнорируйте это письмо.')
             ->line('Ссылка для сброса пароля будет действительна в течение 60 минут.')

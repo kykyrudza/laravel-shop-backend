@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Auth\ForgotPasswordController;
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\RegisterController;
@@ -9,9 +8,11 @@ use App\Http\Controllers\User\Auth\ResetPasswordController;
 use App\Http\Controllers\User\Auth\VerificationController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/', [MainController::class, 'index'])
+    ->name('home');
 
-Route::get('locale/{locale}', [MainController::class, 'changeLocale'])->name('locale.change');
+Route::get('locale/{locale}', [MainController::class, 'locale'])
+    ->name('locale.change');
 
 Route::middleware('guest')->group(function () {
 

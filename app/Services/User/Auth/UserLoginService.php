@@ -25,8 +25,8 @@ class UserLoginService
             return DB::transaction(function () use ($data) {
                 $user = $this->findUser($data['email']);
 
-                if (!$user || !$this->attemptUser($user, $data['password'])) {
-                    throw new UserLoginException('Invalid login credentials!');
+                if (! $user || ! $this->attemptUser($user, $data['password'])) {
+                    throw new UserLoginException(__('errors.auth.user-logging.invalid-credentials'));
                 }
 
                 event(new UserLogging($user));

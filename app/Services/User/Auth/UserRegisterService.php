@@ -36,7 +36,7 @@ class UserRegisterService
             });
         } catch (Throwable $e) {
             report($e);
-            throw new UserRegisterException('Error during user registration: '.$e->getMessage(), 0, $e);
+            throw new UserRegisterException($e->getMessage(), 0, $e);
         }
     }
 
@@ -46,7 +46,7 @@ class UserRegisterService
     private function checkIfUserExists(string $email): void
     {
         if ($this->repository->exists($email)) {
-            throw new UserRegisterException('User with this email address already exist!');
+            throw new UserRegisterException(__('errors.auth.user-registered.email-exist'));
         }
     }
 
@@ -57,7 +57,7 @@ class UserRegisterService
 
     private function loginCreatedUser(User $user, array $data): void
     {
-        $remember = !empty($data['remember_token']);
+        $remember = ! empty($data['remember_token']);
 
         auth()->login($user, $remember);
     }

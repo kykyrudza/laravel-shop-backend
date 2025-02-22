@@ -12,6 +12,7 @@ class ResetPasswordEmail implements ShouldQueue
     use Dispatchable, SerializesModels;
 
     public User $user;
+
     public string $token;
 
     public function __construct(User $user, string $token)

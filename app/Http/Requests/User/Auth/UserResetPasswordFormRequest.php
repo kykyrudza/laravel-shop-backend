@@ -26,7 +26,7 @@ class UserResetPasswordFormRequest extends FormRequest
                 'regex:/[0-9]/',
                 'regex:/[@$!%*?&#]/',
             ],
-            'password_confirmation' => 'required|same:password'
+            'password_confirmation' => 'required|same:password',
         ];
     }
 }

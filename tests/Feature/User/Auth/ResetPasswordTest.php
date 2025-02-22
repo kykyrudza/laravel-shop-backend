@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\User\Auth;
+namespace Tests\Feature\User\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Tests\TestCase;
 
-class ResetPasswordControllerTest extends TestCase
+class ResetPasswordTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -38,7 +38,6 @@ class ResetPasswordControllerTest extends TestCase
 
         $this->assertTrue(Hash::check('NewPassword123!', $user->fresh()->password));
     }
-
 
     public function test_user_cannot_reset_password_with_invalid_token()
     {

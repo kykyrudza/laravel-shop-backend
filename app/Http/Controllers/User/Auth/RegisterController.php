@@ -21,7 +21,7 @@ class RegisterController extends Controller
 
             return redirect()
                 ->route('home')
-                ->with('success', 'Аккаунт удачно создан!');
+                ->with('success', __('success.auth.user-register.success'));
 
         } catch (UserRegisterException $e) {
 

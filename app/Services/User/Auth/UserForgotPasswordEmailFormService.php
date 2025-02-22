@@ -12,7 +12,7 @@ class UserForgotPasswordEmailFormService
 {
     public function __construct(
         protected UserRepository $repository,
-    ){}
+    ) {}
 
     /**
      * @throws UserForgotPasswordEmailFormException
@@ -22,8 +22,8 @@ class UserForgotPasswordEmailFormService
         try {
             $user = $this->findUser($data['email']);
 
-            if (!$user) {
-                throw new UserForgotPasswordEmailFormException('User with this Email not found!');
+            if (! $user) {
+                throw new UserForgotPasswordEmailFormException(__('errors.auth.forgot-password-form.user-not-found'));
             }
 
             $token = Password::getRepository()->create($user);
@@ -31,7 +31,7 @@ class UserForgotPasswordEmailFormService
             event(new ResetPasswordEmail($user, $token));
 
             return true;
-        }catch (UserForgotPasswordEmailFormException $e){
+        } catch (UserForgotPasswordEmailFormException $e) {
 
             report($e);
 
