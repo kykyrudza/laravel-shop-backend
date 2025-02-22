@@ -3,8 +3,8 @@
 namespace App\Actions\User\Auth;
 
 use App\Exceptions\User\Auth\UserLoginException;
+use App\Models\User;
 use App\Services\User\Auth\UserLoginService;
-use Throwable;
 
 class UserLoginAction
 {
@@ -15,13 +15,8 @@ class UserLoginAction
     /**
      * @throws UserLoginException
      */
-    public function handle(array $data)
+    public function handle(array $data): User
     {
-        try {
-            return $this->service->login($data);
-        } catch (Throwable $e) {
-            report($e);
-            throw new UserLoginException($e->getMessage(), 0, $e);
-        }
+        return $this->service->login($data);
     }
 }

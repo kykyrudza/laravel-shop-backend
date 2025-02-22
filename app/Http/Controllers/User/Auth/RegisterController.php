@@ -14,9 +14,6 @@ class RegisterController extends Controller
         return view('user.auth.register');
     }
 
-    /**
-     * @throws UserRegisterException
-     */
     public function store(UserRegisterRequest $request, UserRegisterAction $action)
     {
         try {

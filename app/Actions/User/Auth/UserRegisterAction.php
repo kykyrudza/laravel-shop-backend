@@ -3,8 +3,8 @@
 namespace App\Actions\User\Auth;
 
 use App\Exceptions\User\Auth\UserRegisterException;
+use App\Models\User;
 use App\Services\User\Auth\UserRegisterService;
-use Throwable;
 
 class UserRegisterAction
 {
@@ -18,13 +18,8 @@ class UserRegisterAction
     /**
      * @throws UserRegisterException
      */
-    public function handle(array $data)
+    public function handle(array $data): User
     {
-        try {
-            return $this->service->register($data);
-        } catch (Throwable $e) {
-            report($e);
-            throw new UserRegisterException($e->getMessage(), 0, $e);
-        }
+        return $this->service->register($data);
     }
 }

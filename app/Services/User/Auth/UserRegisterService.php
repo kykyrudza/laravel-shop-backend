@@ -22,7 +22,6 @@ class UserRegisterService
     public function register(array $data): User
     {
         $this->checkIfUserExists($data['email']);
-
         try {
             return DB::transaction(function () use ($data) {
                 $data['password'] = Hash::make($data['password']);

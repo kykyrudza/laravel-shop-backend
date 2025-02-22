@@ -17,8 +17,6 @@ class RegisterControllerTest extends TestCase
     #[Test]
     public function test_store_success()
     {
-        //Event::fake();
-
         $userData = [
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -31,11 +29,15 @@ class RegisterControllerTest extends TestCase
 
         $response->assertStatus(302);
 
+        $response->assertStatus(302);
+
+        if (!User::where('email', $userData['email'])->exists()) {
+            dd('Пользователь не создан в базе');
+        }
+
         $this->assertDatabaseHas('users', [
             'email' => $userData['email'],
         ]);
-
-       // Event::assertDispatched(UserRegistered::class);
     }
 
     #[Test]

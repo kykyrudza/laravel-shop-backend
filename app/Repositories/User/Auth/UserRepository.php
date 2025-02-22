@@ -19,11 +19,11 @@ class UserRepository
             ->exists();
     }
 
-    public function find(string $email): User
+    public function find(string $email): User|false
     {
         return User::query()
             ->where([
                 'email' => $email
-            ])->first();
+            ])->first() ?? false;
     }
 }
