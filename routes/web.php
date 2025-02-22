@@ -9,6 +9,10 @@ use App\Http\Controllers\User\Auth\ResetPasswordController;
 use App\Http\Controllers\User\Auth\VerificationController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [MainController::class, 'index'])->name('home');
+
+Route::get('locale/{locale}', [MainController::class, 'changeLocale'])->name('locale.change');
+
 Route::middleware('guest')->group(function () {
 
     Route::get('register', [RegisterController::class, 'index'])
@@ -46,7 +50,3 @@ Route::middleware('auth')->group(function () {
         ->middleware('signed')
         ->name('verification.verify');
 });
-
-Route::get('/', [MainController::class, 'index'])->name('home');
-
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
