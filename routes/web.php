@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index'])
     ->name('home');
 
-Route::get('locale/{locale}', [MainController::class, 'locale'])
+Route::post('locale', [MainController::class, 'locale'])
     ->name('locale.change');
+
 
 Route::middleware('guest')->group(function () {
 
