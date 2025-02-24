@@ -22,7 +22,7 @@ class LogoutTest extends TestCase
 
         $response = $this->post(route('logout'));
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
 
         $this->assertGuest();
 
