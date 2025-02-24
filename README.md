@@ -1,14 +1,14 @@
 # E-Commerce Backend System  
 
 ## 🌍 Deploy the project (languages):
-- ### [🇬🇧 English](README.deploy.en.md)
-- ### [🇷🇺 Русский](README.deploy.ru.md)
-- ### [🇺🇦 Українська](README.deploy.ua.md)
+- ### [🇬🇧 English](docs/deploy/README.deploy.en.md)
+- ### [🇷🇺 Русский](docs/deploy/README.deploy.ru.md)
+- ### [🇺🇦 Українська](docs/deploy/README.deploy.ua.md)
 
 ## 🌍 Usage the project (languages):
-- ### [🇬🇧 English](README.en.md)
-- ### [🇷🇺 Русский](README.ru.md)
-- ### [🇺🇦 Українська](README.ua.md)
+- ### [🇬🇧 English](docs/usage/README.en.md)
+- ### [🇷🇺 Русский](docs/usage/README.ru.md)
+- ### [🇺🇦 Українська](docs/usage/README.ua.md)
 
 ## 📌 Features
 - 🛍️ Product management (CRUD operations for products)
