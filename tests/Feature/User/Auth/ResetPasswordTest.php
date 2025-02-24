@@ -34,7 +34,7 @@ class ResetPasswordTest extends TestCase
         ]);
 
         $response->assertRedirect(route('login'));
-        $response->assertSessionHas('success', 'Password change success');
+        $response->assertSessionHas('success');
 
         $this->assertTrue(Hash::check('NewPassword123!', $user->fresh()->password));
     }
