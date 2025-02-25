@@ -4,8 +4,8 @@ namespace App\Notifications\User\Auth;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use App\Mail\User\Auth\SuccessRegistrationNotification as SuccessRegistration;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class SuccessRegistrationNotification extends Notification implements ShouldQueue
@@ -24,13 +24,8 @@ class SuccessRegistrationNotification extends Notification implements ShouldQueu
         return ['mail'];
     }
 
-    public function toMail($notifiable): MailMessage
+    public function toMail($notifiable): SuccessRegistration
     {
-        return (new MailMessage)
-            ->subject('Успешная регистрация')
-            ->greeting("Привет, {$this->user->name}!")
-            ->line('Вы успешно зарегистрировались в нашем сервисе.')
-            ->action('Перейти на сайт', url('/'))
-            ->line('Спасибо, что выбрали нас!');
+        return new SuccessRegistration($this->user);
     }
 }
