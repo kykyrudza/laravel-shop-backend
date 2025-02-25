@@ -15,8 +15,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $categories = Category::where('status', true)->orderBy('sort_order')->get();
+       // $categories = Category::where('status', true)->orderBy('sort_order')->get();
 
-        View::share('categories', $categories);
+       // View::share('categories', $categories);
     }
 }
