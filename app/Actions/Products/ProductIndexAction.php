@@ -10,7 +10,7 @@ class ProductIndexAction
 {
     public function __construct(
         protected ProductIndexService $service,
-    ){}
+    ) {}
 
     /**
      * @throws ProductNotFound

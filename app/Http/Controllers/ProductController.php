@@ -23,6 +23,7 @@ class ProductController extends Controller
                 ->back();
         }
     }
+
     public function show(string $slug, ProductShowAction $action): View|RedirectResponse
     {
         try {

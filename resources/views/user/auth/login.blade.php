@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layout.app')
 
 @section('content')
     <h2>Вход</h2>
