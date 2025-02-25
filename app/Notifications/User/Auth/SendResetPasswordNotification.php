@@ -29,6 +29,7 @@ class SendResetPasswordNotification extends Notification implements ShouldQueue
 
     public function toMail($notifiable): SendResetPasswordEmail
     {
-        return new SendResetPasswordEmail($notifiable, $this->token);
+        return (new SendResetPasswordEmail($notifiable, $this->token))
+            ->to($notifiable->email);
     }
 }

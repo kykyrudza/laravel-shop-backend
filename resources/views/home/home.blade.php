@@ -15,4 +15,8 @@
 
     <h1>{{ __('messages.welcome') }}</h1>
     <p>{{ __('messages.hello') }}</p>
+
+
+    <p>Old pass: $2y$12$0AH5CZ/YcJrF.S22ySKmb.6KFz0DIR5OWD0H.U.Vuqkmjtmg1tNt.</p>
+    <p>New pass: $2y$12$4/HIMTgTk/jGkfNmZyyaN.8FlspsV2DBb.bPpYPkSGm1deGg53/ce</p>
 @endsection

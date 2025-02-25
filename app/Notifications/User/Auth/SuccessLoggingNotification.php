@@ -3,7 +3,7 @@
 namespace App\Notifications\User\Auth;
 
 use App\Models\User;
-use App\Mail\User\Auth\SuccessLoggingNotification as SuccessLogging;
+use App\Mail\User\Auth\SuccessLoggingEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
@@ -24,8 +24,9 @@ class SuccessLoggingNotification extends Notification implements ShouldQueue
         return ['mail'];
     }
 
-    public function toMail($notifiable): SuccessLogging
+    public function toMail($notifiable): SuccessLoggingEmail
     {
-        return new SuccessLogging($this->user);
+        return (new SuccessLoggingEmail($this->user))
+            ->to($notifiable->email);
     }
 }
