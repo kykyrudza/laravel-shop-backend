@@ -8,12 +8,9 @@ use App\Services\User\Auth\UserRegisterService;
 
 class UserRegisterAction
 {
-    protected UserRegisterService $service;
-
-    public function __construct(UserRegisterService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(
+        protected UserRegisterService $service
+    ) {}
 
     /**
      * @throws UserRegisterException

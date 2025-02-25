@@ -7,12 +7,9 @@ use App\Services\User\Auth\UserForgotPasswordEmailFormService;
 
 class UserForgotPasswordEmailFormAction
 {
-    protected UserForgotPasswordEmailFormService $service;
-
-    public function __construct(UserForgotPasswordEmailFormService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(
+        protected UserForgotPasswordEmailFormService $service
+    ) {}
 
     /**
      * @throws UserForgotPasswordEmailFormException

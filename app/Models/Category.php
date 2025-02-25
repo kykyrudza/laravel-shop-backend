@@ -21,7 +21,7 @@ class Category extends Model
         'image',
         'status',
         'sort_order',
-        'parent_id'
+        'parent_id',
     ];
 
     protected $casts = [
@@ -36,9 +36,14 @@ class Category extends Model
         static::deleted(fn () => Cache::forget('categories_all'));
     }
 
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class, 'category_id');
+    }
+
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'parent_id')->withDefault(); // Если нет родителя, вернет пустой объект
+        return $this->belongsTo(Category::class, 'parent_id')->withDefault();
     }
 
     public function children(): HasMany

@@ -7,12 +7,9 @@ use App\Services\User\Auth\UserResetPasswordFormService;
 
 class UserResetPasswordFormAction
 {
-    protected UserResetPasswordFormService $service;
-
-    public function __construct(UserResetPasswordFormService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(
+        protected UserResetPasswordFormService $service
+    ) {}
 
     /**
      * @throws UserResetPasswordFormException

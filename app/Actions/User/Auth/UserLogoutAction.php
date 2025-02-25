@@ -29,7 +29,6 @@ class UserLogoutAction
         }
     }
 
-
     private function restoreSession(): void
     {
         session()->regenerate();

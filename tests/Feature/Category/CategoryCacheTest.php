@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Category;
 
-
 use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;

@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
             'description' => $this->faker->optional()->realText(100),
             'status' => $this->faker->boolean(),
             'sort_order' => $this->faker->numberBetween(0, 100),
-            'parent_id' => null,
+            'parent_id' => rand(0, 1) ? Category::inRandomOrder()->first()?->id : null,
         ];
     }
 }

@@ -8,20 +8,23 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('categories_images', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+
             $table->foreignId('category_id')
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->string('category_image_path')
-                ->default('storage/default/category/category.png');
+            $table->text('description');
+            $table->integer('price');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('categories_images');
+        Schema::dropIfExists('products');
     }
 };

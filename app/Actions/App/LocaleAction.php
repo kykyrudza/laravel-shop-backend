@@ -13,7 +13,7 @@ class LocaleAction
             app()->setLocale($locale);
 
             return redirect()
-                ->route('home');
+                ->back();
         }
 
         return redirect()
