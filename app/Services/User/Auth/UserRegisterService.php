@@ -5,7 +5,7 @@ namespace App\Services\User\Auth;
 use App\Events\User\Auth\UserRegistered;
 use App\Exceptions\User\Auth\UserRegisterException;
 use App\Models\User;
-use App\Repositories\User\Auth\UserRepository;
+use App\Repositories\User\UserRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Throwable;
@@ -35,8 +35,11 @@ class UserRegisterService
                 return $user;
             });
         } catch (Throwable $e) {
-            report($e);
-            throw new UserRegisterException($e->getMessage(), 0, $e);
+            throw new UserRegisterException(
+                $e->getMessage(),
+                0,
+                $e
+            );
         }
     }
 

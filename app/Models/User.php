@@ -30,5 +30,4 @@ class User extends Authenticatable
         'password' => 'hashed',
         'is_admin' => 'boolean',
     ];
-
 }

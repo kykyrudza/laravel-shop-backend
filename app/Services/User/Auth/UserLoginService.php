@@ -5,7 +5,7 @@ namespace App\Services\User\Auth;
 use App\Events\User\Auth\UserLogging;
 use App\Exceptions\User\Auth\UserLoginException;
 use App\Models\User;
-use App\Repositories\User\Auth\UserRepository;
+use App\Repositories\User\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -17,7 +17,7 @@ class UserLoginService
     ) {}
 
     /**
-     * @throws UserLoginException
+     * @throws UserLoginException|Throwable
      */
     public function login(array $data): User
     {
@@ -33,8 +33,7 @@ class UserLoginService
 
                 return $user;
             });
-        } catch (Throwable $e) {
-            report($e);
+        } catch (UserLoginException $e) {
             throw new UserLoginException(
                 $e->getMessage(),
                 0,

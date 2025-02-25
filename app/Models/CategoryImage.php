@@ -11,11 +11,11 @@ class CategoryImage extends Model
 
     protected $fillable = [
         'category_id',
-        'image_path'
+        'category_image_path',
     ];
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

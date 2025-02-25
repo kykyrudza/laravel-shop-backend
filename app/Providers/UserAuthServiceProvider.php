@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Repositories\User\Auth\UserRepository;
+use App\Repositories\User\UserRepository;
 use App\Services\User\Auth\UserForgotPasswordEmailFormService;
 use App\Services\User\Auth\UserLoginService;
 use App\Services\User\Auth\UserRegisterService;

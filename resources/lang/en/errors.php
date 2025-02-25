@@ -19,4 +19,7 @@ return [
             'user-not-found' => 'User with this email was not found!',
         ],
     ],
+    'products' => [
+        'not-found' => 'Product not found!',
+    ],
 ];

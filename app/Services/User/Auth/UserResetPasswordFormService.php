@@ -4,8 +4,7 @@ namespace App\Services\User\Auth;
 
 use App\Exceptions\User\Auth\UserResetPasswordFormException;
 use App\Models\User;
-use App\Repositories\User\Auth\UserRepository;
-use Exception;
+use App\Repositories\User\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
@@ -29,9 +28,12 @@ class UserResetPasswordFormService
             }
 
             return true;
-        } catch (Exception $e) {
-            report($e);
-            throw new UserResetPasswordFormException(__('errors.auth.reset-password-form.password-error'));
+        } catch (UserResetPasswordFormException $e) {
+            throw new UserResetPasswordFormException(
+                $e->getMessage(),
+                0,
+                $e
+            );
         }
     }
 

@@ -5,7 +5,7 @@ namespace App\Services\User\Auth;
 use App\Events\User\Auth\ResetPasswordEmail;
 use App\Exceptions\User\Auth\UserForgotPasswordEmailFormException;
 use App\Models\User;
-use App\Repositories\User\Auth\UserRepository;
+use App\Repositories\User\UserRepository;
 use Illuminate\Support\Facades\Password;
 
 class UserForgotPasswordEmailFormService
@@ -32,9 +32,6 @@ class UserForgotPasswordEmailFormService
 
             return true;
         } catch (UserForgotPasswordEmailFormException $e) {
-
-            report($e);
-
             throw new UserForgotPasswordEmailFormException(
                 $e->getMessage(),
                 0,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Auth\ForgotPasswordController;
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\RegisterController;
@@ -13,7 +14,6 @@ Route::get('/', [MainController::class, 'index'])
 
 Route::post('locale', [MainController::class, 'locale'])
     ->name('locale.change');
-
 
 Route::middleware('guest')->group(function () {
 
@@ -52,3 +52,9 @@ Route::middleware('auth')->group(function () {
         ->middleware('signed')
         ->name('verification.verify');
 });
+
+Route::get('/products', [ProductController::class, 'index'])
+    ->name('products.index');
+
+Route::get('/products/{slug}', [ProductController::class, 'show'])
+    ->name('product.show');
