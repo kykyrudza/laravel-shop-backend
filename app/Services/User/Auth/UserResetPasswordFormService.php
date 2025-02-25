@@ -22,7 +22,6 @@ class UserResetPasswordFormService
     {
         try {
             $status = $this->resetPassword($data);
-
             if ($status !== Password::PASSWORD_RESET) {
                 throw new UserResetPasswordFormException(__('errors.auth.reset-password-form.token-error'));
             }

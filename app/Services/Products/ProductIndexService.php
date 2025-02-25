@@ -19,6 +19,7 @@ class ProductIndexService
     {
         try {
             $products = $this->getProducts();
+
             return view('products.index', ['products' => $products]);
         } catch (Throwable $e) {
             throw new ProductNotFound('Something went wrong', 0, $e);
@@ -34,7 +35,7 @@ class ProductIndexService
     {
         $cacheKey = $this->getCacheKey();
 
-        if (!cache()->has($cacheKey)) {
+        if (! cache()->has($cacheKey)) {
             return null;
         }
 
@@ -45,6 +46,7 @@ class ProductIndexService
     {
         $products = $this->repository->getProducts();
         $this->setCache($products);
+
         return $products;
     }
 
@@ -58,12 +60,14 @@ class ProductIndexService
     {
         $page = request()->get('page', 1);
         $perPage = 10;
+
         return "products_{$perPage}_page_{$page}";
     }
 
     private function createPaginatorFromCache(string $cacheKey): LengthAwarePaginator
     {
         $cachedData = cache()->get($cacheKey);
+
         return new LengthAwarePaginator(
             collect($cachedData['items']),
             $cachedData['total'],

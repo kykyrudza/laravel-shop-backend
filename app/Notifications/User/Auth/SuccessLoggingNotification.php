@@ -3,9 +3,9 @@
 namespace App\Notifications\User\Auth;
 
 use App\Models\User;
+use App\Mail\User\Auth\SuccessLoggingEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class SuccessLoggingNotification extends Notification implements ShouldQueue
@@ -24,13 +24,9 @@ class SuccessLoggingNotification extends Notification implements ShouldQueue
         return ['mail'];
     }
 
-    public function toMail($notifiable): MailMessage
+    public function toMail($notifiable): SuccessLoggingEmail
     {
-        return (new MailMessage)
-            ->subject('Успешный вход!')
-            ->greeting("Привет, {$this->user->name}!")
-            ->line('Вы успешно вошли в свой аккаунт!')
-            ->action('Перейти на сайт', url('/'))
-            ->line('Спасибо, что выбрали нас!');
+        return (new SuccessLoggingEmail($this->user))
+            ->to($notifiable->email);
     }
 }

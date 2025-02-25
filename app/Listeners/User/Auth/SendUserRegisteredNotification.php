@@ -8,17 +8,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SendUserRegisteredNotification implements ShouldQueue
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(UserRegistered $event): void
     {
         SendUserRegisteredNotificationJob::dispatch($event->user);
