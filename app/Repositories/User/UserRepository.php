@@ -26,4 +26,17 @@ class UserRepository
                 'email' => $email,
             ])->first() ?? false;
     }
+
+    public function findById(int $id): User|false
+    {
+        return User::query()
+            ->where([
+                'id' => $id,
+            ])->first() ?? false;
+    }
+
+    public function updateUser(User $user, array $data): bool
+    {
+        return $user->update($data);
+    }
 }
