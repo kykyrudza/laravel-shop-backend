@@ -14,10 +14,9 @@ class ResetPasswordController extends Controller
     {
         return view('user.auth.password.password_reset_form', [
             'token' => $token,
-            'email' => $request->query('email')
+            'email' => $request->query('email'),
         ]);
     }
-
 
     public function store(UserResetPasswordFormRequest $request, UserResetPasswordFormAction $action)
     {

@@ -49,7 +49,7 @@ class UserRepository
     public function updateUserPassword(mixed $password)
     {
         return auth()->user()->update([
-            'password' => Hash::make($password)
+            'password' => Hash::make($password),
         ]);
     }
 }

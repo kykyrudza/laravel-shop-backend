@@ -13,7 +13,8 @@ class UserResetPasswordFormService
 {
     public function __construct(
         protected UserRepository $repository,
-    ) {}
+    ) {
+    }
 
     /**
      * @throws UserResetPasswordFormException

@@ -11,7 +11,8 @@ class UserProfileStoreAction
 {
     public function __construct(
         protected UserProfileUpdateService $service,
-    ){}
+    ) {
+    }
 
     /**
      * @throws Throwable

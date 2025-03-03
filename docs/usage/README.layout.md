@@ -77,3 +77,11 @@ php artisan vendor:publish --tag=laravel-pagination
 @endsection
 
 ```
+# Смена пароля 
+
+``
+name для форм
+``
+1. current_password
+2. password
+3. password_confirmation

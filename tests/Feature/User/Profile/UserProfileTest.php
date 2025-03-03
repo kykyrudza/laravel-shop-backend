@@ -50,7 +50,7 @@ class UserProfileTest extends TestCase
         $this->refreshDatabase();
 
         $user = User::factory()->create([
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
         ]);
 
         $this->actingAs($user);

@@ -10,14 +10,16 @@ class UserProfileIndexAction
 {
     public function __construct(
         protected UserRepository $repository,
-    ){}
+    ) {
+    }
 
     public function handle(int $id): View|RedirectResponse
     {
         $user = $this->repository->findById($id);
 
-        if (!$user) {
+        if (! $user) {
             session()->flash('error', 'User not found');
+
             return redirect()->back();
         }
 

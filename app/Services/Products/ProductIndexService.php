@@ -13,7 +13,9 @@ use Throwable;
 
 class ProductIndexService
 {
-    public function __construct(protected ProductRepository $repository) {}
+    public function __construct(protected ProductRepository $repository)
+    {
+    }
 
     /**
      * @throws ProductNotFound

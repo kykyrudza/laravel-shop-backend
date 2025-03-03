@@ -2,9 +2,9 @@
 
 namespace App\Notifications\User\Auth;
 
+use App\Mail\User\Auth\SuccessRegistrationEmail;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use App\Mail\User\Auth\SuccessRegistrationEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 

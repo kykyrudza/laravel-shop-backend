@@ -2,8 +2,8 @@
 
 namespace App\Notifications\User\Auth;
 
-use App\Models\User;
 use App\Mail\User\Auth\SuccessLoggingEmail;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;

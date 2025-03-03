@@ -12,11 +12,13 @@ class UserProfileUpdateService
 {
     public function __construct(
         protected UserRepository $repository,
-    ){}
+    ) {
+    }
 
     /**
-     * @param array $data
+     * @param  array  $data
      * @return RedirectResponse
+     *
      * @throws UserProfileUpdateException
      * @throws Throwable
      */
@@ -41,7 +43,7 @@ class UserProfileUpdateService
         }
     }
     /**
-     * @param int $user_id
+     * @param  int  $user_id
      * @return RedirectResponse
      */
     private function redirect(int $user_id): RedirectResponse

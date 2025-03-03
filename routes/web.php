@@ -40,4 +40,4 @@ Route::get('/products', [ProductController::class, 'index'])
 Route::get('/product/{slug}', [ProductController::class, 'show'])
     ->name('product.show');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
