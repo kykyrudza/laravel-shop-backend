@@ -15,7 +15,7 @@ class SendResetPasswordEmail extends Mailable
         $this->token = $token;
     }
 
-    public function build()
+    public function build(): SendResetPasswordEmail
     {
         $resetUrl = url(route('password.reset', [
             'token' => $this->token,

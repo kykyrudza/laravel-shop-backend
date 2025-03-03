@@ -11,7 +11,8 @@ class ProductShowService
 {
     public function __construct(
         protected ProductRepository $repository
-    ) {}
+    ) {
+    }
 
     /**
      * @throws ProductNotFound

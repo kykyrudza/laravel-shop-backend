@@ -2,12 +2,14 @@
 
 namespace App\Mail\User\Auth;
 
+use App\Models\User;
 use Illuminate\Mail\Mailable;
+use Illuminate\Support\Carbon;
 
 class SuccessLoggingEmail extends Mailable
 {
-    public $user;
-    public $loginTime;
+    public User $user;
+    public Carbon $loginTime;
 
     public function __construct($user)
     {
@@ -15,7 +17,7 @@ class SuccessLoggingEmail extends Mailable
         $this->loginTime = now();
     }
 
-    public function build()
+    public function build(): SuccessLoggingEmail
     {
         return $this->to($this->user->email)
             ->subject('Успешный вход')

@@ -12,7 +12,8 @@ class UserForgotPasswordEmailFormService
 {
     public function __construct(
         protected UserRepository $repository,
-    ) {}
+    ) {
+    }
 
     /**
      * @throws UserForgotPasswordEmailFormException

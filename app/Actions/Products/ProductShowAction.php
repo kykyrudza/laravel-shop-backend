@@ -10,7 +10,8 @@ class ProductShowAction
 {
     public function __construct(
         protected ProductShowService $service,
-    ) {}
+    ) {
+    }
 
     /**
      * @throws ProductNotFound

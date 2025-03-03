@@ -6,11 +6,16 @@ use App\Exceptions\Products\ProductNotFound;
 use App\Repositories\Products\ProductRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\SimpleCache\InvalidArgumentException;
 use Throwable;
 
 class ProductIndexService
 {
-    public function __construct(protected ProductRepository $repository) {}
+    public function __construct(protected ProductRepository $repository)
+    {
+    }
 
     /**
      * @throws ProductNotFound
@@ -26,11 +31,20 @@ class ProductIndexService
         }
     }
 
+    /**
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws InvalidArgumentException
+     */
     private function getProducts(): LengthAwarePaginator
     {
         return $this->getProductsFromCache() ?? $this->getProductsFromDatabase();
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     private function getProductsFromCache(): ?LengthAwarePaginator
     {
         $cacheKey = $this->getCacheKey();
@@ -42,6 +56,11 @@ class ProductIndexService
         return $this->createPaginatorFromCache($cacheKey);
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws InvalidArgumentException
+     */
     private function getProductsFromDatabase(): LengthAwarePaginator
     {
         $products = $this->repository->getProducts();
@@ -50,20 +69,33 @@ class ProductIndexService
         return $products;
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws InvalidArgumentException
+     */
     private function setCache(LengthAwarePaginator $products): void
     {
         $cacheKey = $this->getCacheKey();
         cache()->set($cacheKey, $this->formatCacheData($products), now()->addMinutes(30));
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     private function getCacheKey(): string
     {
         $page = request()->get('page', 1);
         $perPage = 10;
 
-        return "products_{$perPage}_page_{$page}";
+        return "products_{$perPage}_page_$page";
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     private function createPaginatorFromCache(string $cacheKey): LengthAwarePaginator
     {
         $cachedData = cache()->get($cacheKey);
