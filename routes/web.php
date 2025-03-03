@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{user_id}', [UserController::class, 'index'])->name('profile');
     Route::put('/profile/update', [UserController::class, 'store'])->name('profile.update');
     Route::post('/profile/add/address', [UserController::class, 'addAddress'])->name('profile.add.address');
-    Route::put('/profile/password/update', [UserController::class, 'updatePassword'])->name('profile.password.update');
+    Route::put('/profile/password/update', [UserController::class, 'password'])->name('profile.password.update');
 
     Route::get('/{user_id}/orders}', [UserController::class, 'orders'])->name('profile.orders');
 

@@ -35,14 +35,11 @@ class UserProfileUpdateService
                 return $this->redirect($user->id);
             });
         } catch (Throwable $e) {
-            logger()->error('User profile update error', ['error' => $e]);
-
             session()->flash('error', __('error.user.profile-update.general'));
 
             throw new UserProfileUpdateException(__('error.user.profile-update.error'), 0, $e);
         }
     }
-
     /**
      * @param int $user_id
      * @return RedirectResponse

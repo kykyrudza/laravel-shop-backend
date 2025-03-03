@@ -26,6 +26,7 @@ return [
         'profile-update' => [
             'general' => 'An error occurred while updating your profile. Please try again later.',
             'error' => 'There was a problem updating your profile. Please try again.',
-        ]
+        ],
+        'password-change' => 'Веденные пароли не совпадают!'
     ]
 ];

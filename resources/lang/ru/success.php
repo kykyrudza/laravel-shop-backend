@@ -21,6 +21,9 @@ return [
     'user' => [
         'profile-update' => [
             'success' => 'Вашы данные успешно обновленны!'
+        ],
+        'password-update' => [
+            'success' => 'Ваш пароль успешно обновлен!'
         ]
     ]
 ];
