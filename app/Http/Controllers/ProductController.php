@@ -12,33 +12,25 @@ class ProductController extends Controller
 {
     public function index(ProductIndexAction $action): View|RedirectResponse
     {
-        try {
-            return $action->handle();
-
-        } catch (ProductNotFound $e) {
-
-            session()->flash('error', $e->getMessage());
-
-            return redirect()
-                ->back();
-        }
+        return $this->handleAction(fn() => $action->handle(), 'products.index', 'products');
     }
 
     public function show(string $slug, ProductShowAction $action): View|RedirectResponse
     {
-        try {
-            $product = $action->handle($slug);
+        return $this->handleAction(fn() => $action->handle($slug), 'products.show', 'product');
+    }
 
-            return view('products.show', [
-                'product' => $product,
-            ]);
+    private function handleAction(callable $callback, string $view, string $dataKey): View|RedirectResponse
+    {
+        try {
+            $data = $callback();
+
+            return view($view, [$dataKey => $data]);
 
         } catch (ProductNotFound $e) {
-
             session()->flash('error', $e->getMessage());
 
-            return redirect()
-                ->back();
+            return redirect()->back();
         }
     }
 }

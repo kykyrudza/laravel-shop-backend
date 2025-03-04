@@ -11,15 +11,15 @@ class UserProfileStoreAction
 {
     public function __construct(
         protected UserProfileUpdateService $service,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws Throwable
      * @throws UserProfileUpdateException
      */
-    public function handle(array $data): RedirectResponse
+    public function handle(array $data): bool
     {
         return $this->service->handle($data);
     }
 }
+

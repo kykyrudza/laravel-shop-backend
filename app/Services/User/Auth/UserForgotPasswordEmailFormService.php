@@ -6,6 +6,7 @@ use App\Events\User\Auth\ResetPasswordEmail;
 use App\Exceptions\User\Auth\UserForgotPasswordEmailFormException;
 use App\Models\User;
 use App\Repositories\User\UserRepository;
+use App\Services\Contracts\ServiceContract;
 use Illuminate\Support\Facades\Password;
 
 class UserForgotPasswordEmailFormService
@@ -18,7 +19,7 @@ class UserForgotPasswordEmailFormService
     /**
      * @throws UserForgotPasswordEmailFormException
      */
-    public function handle(array $data): true
+    public function handle(array $data): bool
     {
         try {
             $user = $this->findUser($data['email']);
