@@ -44,6 +44,7 @@ class UserProfileTest extends TestCase
             'email' => 'test@test.com',
         ]);
     }
+
     #[Test]
     public function test_user_can_change_password()
     {

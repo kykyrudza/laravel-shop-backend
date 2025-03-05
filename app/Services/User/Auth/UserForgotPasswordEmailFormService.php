@@ -12,13 +12,12 @@ class UserForgotPasswordEmailFormService
 {
     public function __construct(
         protected UserRepository $repository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserForgotPasswordEmailFormException
      */
-    public function handle(array $data): true
+    public function handle(array $data): bool
     {
         try {
             $user = $this->findUser($data['email']);

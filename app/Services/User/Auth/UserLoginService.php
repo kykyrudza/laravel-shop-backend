@@ -14,8 +14,7 @@ class UserLoginService
 {
     public function __construct(
         protected UserRepository $repository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserLoginException|Throwable

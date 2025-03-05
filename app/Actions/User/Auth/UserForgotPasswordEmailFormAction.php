@@ -9,13 +9,12 @@ class UserForgotPasswordEmailFormAction
 {
     public function __construct(
         protected UserForgotPasswordEmailFormService $service
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserForgotPasswordEmailFormException
      */
-    public function handle(array $data): true
+    public function handle(array $data): bool
     {
         return $this->service->handle($data);
     }

@@ -4,7 +4,6 @@ namespace App\Services\Products;
 
 use App\Exceptions\Products\ProductNotFound;
 use App\Repositories\Products\ProductRepository;
-use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -13,19 +12,19 @@ use Throwable;
 
 class ProductIndexService
 {
-    public function __construct(protected ProductRepository $repository)
-    {
-    }
+    public function __construct(
+        protected ProductRepository $repository
+    ) {}
 
     /**
      * @throws ProductNotFound
      */
-    public function cached(): View
+    public function handle(): LengthAwarePaginator
     {
         try {
-            $products = $this->getProducts();
 
-            return view('products.index', ['products' => $products]);
+            return $this->getProducts();
+
         } catch (Throwable $e) {
             throw new ProductNotFound('Something went wrong', 0, $e);
         }

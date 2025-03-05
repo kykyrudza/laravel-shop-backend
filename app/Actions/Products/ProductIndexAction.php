@@ -4,20 +4,19 @@ namespace App\Actions\Products;
 
 use App\Exceptions\Products\ProductNotFound;
 use App\Services\Products\ProductIndexService;
-use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductIndexAction
 {
     public function __construct(
         protected ProductIndexService $service,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws ProductNotFound
      */
-    public function handle(): View
+    public function handle(): LengthAwarePaginator
     {
-        return $this->service->cached();
+        return $this->service->handle();
     }
 }

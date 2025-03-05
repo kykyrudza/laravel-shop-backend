@@ -5,33 +5,53 @@ namespace App\Http\Controllers\User;
 use App\Actions\User\Profile\UserPasswordUpdateAction;
 use App\Actions\User\Profile\UserProfileIndexAction;
 use App\Actions\User\Profile\UserProfileStoreAction;
+use App\Exceptions\User\Profile\UserNotFoundException;
 use App\Exceptions\User\Profile\UserProfileUpdateException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Profile\UserChangePasswordRequest;
 use App\Http\Requests\User\Profile\UserProfileUpdateRequest;
-use Throwable;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function index(UserProfileIndexAction $action, int $id)
+    public function index(UserProfileIndexAction $action, int $id): View|RedirectResponse
     {
-        return $action->handle($id);
+        try {
+            return view('user.profile.index', [
+                'user' => $action->handle($id),
+            ]);
+        } catch (UserNotFoundException $e) {
+            report($e);
+
+            return back()->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * @throws Throwable
-     * @throws UserProfileUpdateException
-     */
-    public function store(UserProfileUpdateRequest $request, UserProfileStoreAction $action)
+    public function store(UserProfileUpdateRequest $request, UserProfileStoreAction $action): RedirectResponse
     {
-        return $action->handle($request->validated());
+        try {
+            if ($action->handle($request->validated())) {
+                return to_route('profile', ['user_id' => auth()->id()])
+                    ->with('success', __('success.user.profile-update.success'));
+            }
+        } catch (UserProfileUpdateException $e) {
+            report($e);
+        }
+
+        return back()->with('error', __('error.user.profile-update.general'));
     }
 
-    /**
-     * @throws UserProfileUpdateException
-     */
-    public function password(UserChangePasswordRequest $request, UserPasswordUpdateAction $action)
+    public function password(UserChangePasswordRequest $request, UserPasswordUpdateAction $action): RedirectResponse
     {
-        return $action->handle($request->validated());
+        try {
+            if ($action->handle($request->validated())) {
+                return back()->with('success', __('success.user.password-update.success'));
+            }
+        } catch (UserProfileUpdateException $e) {
+            report($e);
+        }
+
+        return back()->with('error', __('errors.user.password-change'));
     }
 }

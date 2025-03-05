@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 class SuccessLoggingEmail extends Mailable
 {
     public User $user;
+
     public Carbon $loginTime;
 
     public function __construct($user)
