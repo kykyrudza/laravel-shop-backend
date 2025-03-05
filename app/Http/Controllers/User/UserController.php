@@ -32,8 +32,9 @@ class UserController extends Controller
     {
         try {
             if ($action->handle($request->validated())) {
-                return to_route('profile', ['user_id' => auth()->id()])
-                    ->with('success', __('success.user.profile-update.success'));
+                return to_route('profile', [
+                    'user_id' => auth()->id()
+                ])->with('success', __('success.user.profile-update.success'));
             }
         } catch (UserProfileUpdateException $e) {
             report($e);
