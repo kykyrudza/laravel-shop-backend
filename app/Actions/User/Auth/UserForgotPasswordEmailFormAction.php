@@ -9,8 +9,7 @@ class UserForgotPasswordEmailFormAction
 {
     public function __construct(
         protected UserForgotPasswordEmailFormService $service
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserForgotPasswordEmailFormException

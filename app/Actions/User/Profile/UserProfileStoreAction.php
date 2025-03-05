@@ -4,7 +4,6 @@ namespace App\Actions\User\Profile;
 
 use App\Exceptions\User\Profile\UserProfileUpdateException;
 use App\Services\User\Profile\UserProfileUpdateService;
-use Illuminate\Http\RedirectResponse;
 use Throwable;
 
 class UserProfileStoreAction
@@ -22,4 +21,3 @@ class UserProfileStoreAction
         return $this->service->handle($data);
     }
 }
-

@@ -10,8 +10,7 @@ class UserRegisterAction
 {
     public function __construct(
         protected UserRegisterService $service
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserRegisterException

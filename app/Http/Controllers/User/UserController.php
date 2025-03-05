@@ -23,6 +23,7 @@ class UserController extends Controller
             ]);
         } catch (UserNotFoundException $e) {
             report($e);
+
             return back()->with('error', $e->getMessage());
         }
     }

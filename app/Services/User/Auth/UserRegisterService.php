@@ -14,8 +14,7 @@ class UserRegisterService
 {
     public function __construct(
         protected UserRepository $repository
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserRegisterException

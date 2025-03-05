@@ -9,8 +9,7 @@ class UserResetPasswordFormAction
 {
     public function __construct(
         protected UserResetPasswordFormService $service
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserResetPasswordFormException

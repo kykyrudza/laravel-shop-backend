@@ -10,8 +10,7 @@ class UserProfileIndexAction
 {
     public function __construct(
         protected UserRepository $repository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserNotFoundException
@@ -20,7 +19,7 @@ class UserProfileIndexAction
     {
         $user = $this->repository->findById($id);
 
-        if (!$user) {
+        if (! $user) {
             throw new UserNotFoundException('User not found');
         }
 

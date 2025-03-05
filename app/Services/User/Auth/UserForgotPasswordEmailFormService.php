@@ -6,15 +6,13 @@ use App\Events\User\Auth\ResetPasswordEmail;
 use App\Exceptions\User\Auth\UserForgotPasswordEmailFormException;
 use App\Models\User;
 use App\Repositories\User\UserRepository;
-use App\Services\Contracts\ServiceContract;
 use Illuminate\Support\Facades\Password;
 
 class UserForgotPasswordEmailFormService
 {
     public function __construct(
         protected UserRepository $repository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserForgotPasswordEmailFormException

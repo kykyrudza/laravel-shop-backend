@@ -10,8 +10,7 @@ class UserLoginAction
 {
     public function __construct(
         protected UserLoginService $service,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UserLoginException

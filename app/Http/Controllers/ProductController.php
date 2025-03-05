@@ -12,12 +12,12 @@ class ProductController extends Controller
 {
     public function index(ProductIndexAction $action): View|RedirectResponse
     {
-        return $this->handleAction(fn() => $action->handle(), 'products.index', 'products');
+        return $this->handleAction(fn () => $action->handle(), 'products.index', 'products');
     }
 
     public function show(string $slug, ProductShowAction $action): View|RedirectResponse
     {
-        return $this->handleAction(fn() => $action->handle($slug), 'products.show', 'product');
+        return $this->handleAction(fn () => $action->handle($slug), 'products.show', 'product');
     }
 
     private function handleAction(callable $callback, string $view, string $dataKey): View|RedirectResponse

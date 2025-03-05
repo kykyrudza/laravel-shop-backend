@@ -4,7 +4,6 @@ namespace App\Services\User\Profile;
 
 use App\Exceptions\User\Profile\UserProfileUpdateException;
 use App\Repositories\User\UserRepository;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -15,9 +14,6 @@ class UserProfileUpdateService
     ) {}
 
     /**
-     * @param array $data
-     * @return bool
-     *
      * @throws UserProfileUpdateException
      * @throws Throwable
      */
@@ -26,6 +22,7 @@ class UserProfileUpdateService
         try {
             return DB::transaction(function () use ($data) {
                 $user = auth()->user();
+
                 return $this->repository->updateUser($user, $data);
             });
         } catch (Throwable $e) {
@@ -33,4 +30,3 @@ class UserProfileUpdateService
         }
     }
 }
-

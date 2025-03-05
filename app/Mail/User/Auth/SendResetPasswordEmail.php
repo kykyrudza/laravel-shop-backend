@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 class SendResetPasswordEmail extends Mailable
 {
     public $notifiable;
+
     public $token;
 
     public function __construct($notifiable, $token)

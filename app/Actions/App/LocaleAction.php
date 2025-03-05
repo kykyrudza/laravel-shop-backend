@@ -2,8 +2,6 @@
 
 namespace App\Actions\App;
 
-use Illuminate\Http\RedirectResponse;
-
 class LocaleAction
 {
     public function handle(string $locale): bool
