@@ -77,7 +77,7 @@ php artisan vendor:publish --tag=laravel-pagination
 @endsection
 
 ```
-# Смена пароля 
+# Смена пароля в профиле пользователя
 
 ``
 name для форм
