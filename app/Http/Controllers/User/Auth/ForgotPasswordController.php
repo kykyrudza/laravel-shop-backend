@@ -19,19 +19,11 @@ class ForgotPasswordController extends Controller
         try {
             $action->handle($request->validated());
 
-            return redirect()
-                ->back()
-                ->with('success', __('success.auth.forgot-password.success'))
-                ->withInput();
+            return $this->redirectBackWithMessage('success', __('success.auth.forgot-password.success'));
 
         } catch (UserForgotPasswordEmailFormException $e) {
 
-            return redirect()
-                ->back()
-                ->withErrors([
-                    'error' => $e->getMessage(),
-                ])
-                ->withInput();
+            return $this->redirectBackWithMessage('errors', $e->getMessage());
 
         }
     }

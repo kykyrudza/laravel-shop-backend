@@ -76,6 +76,6 @@ class LoginTest extends TestCase
         $response = $this->post(route('login.store'), $data);
 
         $response->assertStatus(302);
-        $response->assertSessionHasErrors();
+        $response->assertSessionHas('errors');
     }
 }

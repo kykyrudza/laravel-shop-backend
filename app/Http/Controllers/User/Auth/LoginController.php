@@ -22,18 +22,11 @@ class LoginController extends Controller
         try {
             $action->handle($request->validated());
 
-            return redirect()
-                ->route('home')
-                ->with('success', __('success.auth.user-login.success'));
+            return $this->redirectToRouteWithMessage('home', 'success', __('success.auth.user-login.success'));
 
         } catch (UserLoginException $e) {
 
-            return redirect()
-                ->back()
-                ->withErrors([
-                    'error' => $e->getMessage(),
-                ])
-                ->withInput();
+            return $this->redirectBackWithMessageWithInput('errors', $e->getMessage());
 
         }
     }
@@ -43,18 +36,11 @@ class LoginController extends Controller
         try {
             $action->handle();
 
-            return redirect()
-                ->route('home')
-                ->with('success', __('success.auth.user-logout.success'));
+            return $this->redirectToRouteWithMessage('home', 'success', __('success.auth.user-logout.success'));
 
         } catch (UserLogoutException $e) {
 
-            return redirect()
-                ->back()
-                ->withErrors([
-                    'error' => $e->getMessage(),
-                ])
-                ->withInput();
+            return $this->redirectBackWithMessageWithInput('errors', $e->getMessage());
 
         }
     }

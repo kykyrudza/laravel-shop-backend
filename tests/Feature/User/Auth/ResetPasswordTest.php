@@ -51,7 +51,7 @@ class ResetPasswordTest extends TestCase
         ]);
 
         $response->assertRedirect();
-        $response->assertSessionHasErrors('error');
+        $response->assertSessionHas('errors');
 
         $this->assertFalse(password_verify('NewPassword123!', $user->fresh()->password));
     }

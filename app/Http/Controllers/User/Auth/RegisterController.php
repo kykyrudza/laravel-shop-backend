@@ -19,18 +19,11 @@ class RegisterController extends Controller
         try {
             $action->handle($request->validated());
 
-            return redirect()
-                ->route('home')
-                ->with('success', __('success.auth.user-register.success'));
+            return $this->redirectToRouteWithMessage('home', 'success', __('success.auth.user-register.success'));
 
         } catch (UserRegisterException $e) {
 
-            return redirect()
-                ->back()
-                ->withErrors([
-                    'error' => $e->getMessage(),
-                ])
-                ->withInput();
+            return $this->redirectBackWithMessageWithInput('errors', $e->getMessage());
 
         }
     }

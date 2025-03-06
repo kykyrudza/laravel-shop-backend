@@ -23,16 +23,11 @@ class ResetPasswordController extends Controller
         try {
             $action->handle($request->validated());
 
-            return redirect()
-                ->route('login')
-                ->with('success', __('success.auth.reset-password.success'));
+            return $this->redirectToRouteWithMessage('login', 'success', __('success.auth.reset-password.success'));
 
         } catch (UserResetPasswordFormException $e) {
-            return redirect()
-                ->back()
-                ->withErrors([
-                    'error' => $e->getMessage(),
-                ]);
+
+            return $this->redirectBackWithMessageWithInput('errors', $e->getMessage());
 
         }
     }

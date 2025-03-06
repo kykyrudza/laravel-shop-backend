@@ -18,41 +18,47 @@ class UserController extends Controller
     public function index(UserProfileIndexAction $action, int $id): View|RedirectResponse
     {
         try {
+
             return view('user.profile.index', [
                 'user' => $action->handle($id),
             ]);
-        } catch (UserNotFoundException $e) {
-            report($e);
 
-            return back()->with('error', $e->getMessage());
+        } catch (UserNotFoundException $e) {
+
+            return $this->redirectBackWithMessage('errors', $e->getMessage());
         }
     }
 
     public function store(UserProfileUpdateRequest $request, UserProfileStoreAction $action): RedirectResponse
     {
         try {
-            if ($action->handle($request->validated())) {
-                return to_route('profile', [
-                    'user_id' => auth()->id()
-                ])->with('success', __('success.user.profile-update.success'));
-            }
-        } catch (UserProfileUpdateException $e) {
-            report($e);
-        }
+            $action->handle($request->validated());
 
-        return back()->with('error', __('error.user.profile-update.general'));
+            return $this->redirectToRouteWithMessage(
+                'profile',
+                'success',
+                __('success.user.profile-update.success'),
+                ['user_id' => auth()->user()->id]
+            );
+
+        } catch (UserProfileUpdateException $e) {
+
+            return $this->redirectBackWithMessage('errors', $e->getMessage());
+
+        }
     }
 
     public function password(UserChangePasswordRequest $request, UserPasswordUpdateAction $action): RedirectResponse
     {
         try {
-            if ($action->handle($request->validated())) {
-                return back()->with('success', __('success.user.password-update.success'));
-            }
-        } catch (UserProfileUpdateException $e) {
-            report($e);
-        }
+            $action->handle($request->validated());
 
-        return back()->with('error', __('errors.user.password-change'));
+            return $this->redirectBackWithMessage('success', __('success.user.password-update.success'));
+
+        } catch (UserProfileUpdateException $e) {
+
+            return $this->redirectBackWithMessage('errors', $e->getMessage());
+
+        }
     }
 }

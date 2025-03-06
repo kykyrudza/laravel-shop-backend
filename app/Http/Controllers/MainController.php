@@ -15,9 +15,9 @@ class MainController extends Controller
     public function locale(LocaleAction $action, Request $request)
     {
         if ($action->handle($request->input('locale'))) {
-            return redirect()->back();
+            return back();
         }
 
-        return redirect()->route('home')->with('error', __('Locale not Found!'));
+        return $this->redirectToRouteWithMessage('home', 'errors', __('Locale not Found!'));
     }
 }

@@ -80,7 +80,7 @@ class RegisterTest extends TestCase
         $response = $this->post(route('register.store'), $data);
 
         $response->assertStatus(302);
-        $response->assertSessionHasErrors();
+        $response->assertSessionHas('errors');
     }
 
     #[Test]
@@ -101,6 +101,6 @@ class RegisterTest extends TestCase
         $response = $this->post(route('register.store'), $data);
 
         $response->assertStatus(302);
-        $response->assertSessionHasErrors(['email']);
+        $response->assertSessionHas('errors');
     }
 }

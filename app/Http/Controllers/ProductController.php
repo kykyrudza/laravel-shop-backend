@@ -28,9 +28,7 @@ class ProductController extends Controller
             return view($view, [$dataKey => $data]);
 
         } catch (ProductNotFound $e) {
-            session()->flash('error', $e->getMessage());
-
-            return redirect()->back();
+            return $this->redirectBackWithMessage('errors', $e->getMessage());
         }
     }
 }
