@@ -19,7 +19,7 @@ class RegisterController extends Controller
         try {
             $action->handle($request->validated());
 
-            return $this->redirectToRouteWithMessage('home', 'success',  __('success.auth.user-register.success'));
+            return $this->redirectToRouteWithMessage('home', 'success', __('success.auth.user-register.success'));
 
         } catch (UserRegisterException $e) {
 

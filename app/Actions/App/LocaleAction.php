@@ -8,7 +8,7 @@ class LocaleAction
     {
         if (in_array($locale, config('locales.available_locales'))) {
             session([
-                'locale' => $locale
+                'locale' => $locale,
             ]);
             app()->setLocale($locale);
 
