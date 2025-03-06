@@ -12,6 +12,9 @@ class SendResetPasswordNotificationTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @throws \Exception
+     */
     public function test_reset_password_notification_is_sent()
     {
         Notification::fake();
